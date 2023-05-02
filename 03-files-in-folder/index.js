@@ -5,7 +5,6 @@ async function readDir(folderName) {
   const root = path.resolve(__dirname, folderName);
   try {
     const files = await fs.readdir(root, { withFileTypes: true });
-    // console.log(files);
     files
       .filter((file) => file.isFile())
       .forEach(async (file) => {
