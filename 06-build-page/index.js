@@ -64,7 +64,8 @@ async function buldHtml() {
   for await (const chunk of readableHtmlStream) {
     rawHTML += chunk;
   }
-  const components = await fs.readdir(componentsPath, { withFileTypes: true });
+  let components = await fs.readdir(componentsPath, { withFileTypes: true });
+  components = components.filter((comp) => comp.name.split('.')[1] === 'html');
   await Promise.all(
     components.map(async (component) => {
       let data = '';
