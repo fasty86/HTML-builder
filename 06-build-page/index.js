@@ -34,7 +34,6 @@ async function copyDir(source, target) {
   if (!isExist) await fs.mkdir(dirPath);
 
   const files = await fs.readdir(copyPath, { withFileTypes: true });
-  // console.log(files);
 
   files.forEach(async (file) => {
     if (file.isFile()) {
@@ -46,7 +45,6 @@ async function copyDir(source, target) {
         path.resolve(source, file.name),
         path.resolve(target, file.name)
       );
-    // } else console.log(path.resolve(target, file.name));
   });
 }
 
@@ -76,7 +74,6 @@ async function buldHtml() {
         data += chunk;
       }
       let name = component.name.split('.')[0];
-      // console.log(name);
       rawHTML = rawHTML.replace(`{{${name}}}`, data);
     })
   );
@@ -84,12 +81,16 @@ async function buldHtml() {
 }
 
 async function run() {
-  await makeFolder();
-  await combine();
-  await copyDir(
-    path.resolve(__dirname, 'assets'),
-    path.resolve(__dirname, 'project-dist', 'assets')
-  );
-  await buldHtml();
+  try {
+    await makeFolder();
+    await combine();
+    await copyDir(
+      path.resolve(__dirname, 'assets'),
+      path.resolve(__dirname, 'project-dist', 'assets')
+    );
+    await buldHtml();
+  } catch (error) {
+    console.log(error);
+  }
 }
 run();

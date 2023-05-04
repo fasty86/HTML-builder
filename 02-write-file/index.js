@@ -12,7 +12,7 @@ console.log('You can type somthing in terminal if you want?');
 rl.on('line', data => {
   if (data === 'exit')  rl.close();
   else writeStream.write(`${data}\n`);
-})
+});
 process.on('beforeExit', () => {
   exit();
 });

@@ -7,7 +7,7 @@ async function combine() {
   const bundlPath = path.resolve(dirPath, 'bundle.css');
   console.log(bundlPath);
   const sourcePath = path.resolve(__dirname, 'styles');
-  const isExist = !!(await fs.stat(bundlPath).catch((e) => false));
+  const isExist = !!(await fs.stat(bundlPath).catch(() => false));
 
   if (isExist) await fs.unlink(bundlPath);
   const writeStream = createWriteStream(bundlPath);

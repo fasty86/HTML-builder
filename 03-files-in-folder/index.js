@@ -11,7 +11,7 @@ async function readDir(folderName) {
         const root = path.resolve(__dirname, folderName, file.name);
         const stat = await fs.stat(root);
         const [name, ext] = file.name.split('.');
-        console.log(`${name} - ${ext} - ${stat.size / 1024}kb`);
+        console.log(`${name} - ${ext} - ${stat.size}B`);
       });
   } catch (error) {
     console.log(error);

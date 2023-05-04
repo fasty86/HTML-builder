@@ -5,7 +5,7 @@ async function copyDir() {
   const dirPath = path.resolve(__dirname, 'files-copy');
   const copyPath = path.resolve(__dirname, 'files');
 
-  const isExist = !!(await fs.stat(dirPath).catch((e) => false));
+  const isExist = !!(await fs.stat(dirPath).catch(() => false));
 
   if (!isExist) await fs.mkdir(dirPath);
   else
